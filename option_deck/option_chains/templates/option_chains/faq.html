@@ -1,0 +1,12 @@
+{% extends "option_chains/base.html" %}
+
+{% block content %}
+<h3>FAQ</h3>
+
+    {% for chain in chains %}
+        <p>{{ chain.ticker }}</p>
+        <p>{{ chain.pe }}</p>
+        <p>{{ chain.price }}</p>
+        <p>{{ chain.date }}</p>
+    {% endfor %}
+{% endblock %}

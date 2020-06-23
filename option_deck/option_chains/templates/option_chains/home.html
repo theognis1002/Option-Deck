@@ -1,0 +1,20 @@
+{% extends "option_chains/base.html" %}
+
+{% block content %}
+<h3>Home</h3>
+
+    {% for chain in chains %}
+
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="{% url 'chain-detail' chain.id %}">{{ chain.ticker }}</a>
+          <small class="text-muted">{{ chain.date_updated|date:"m-d-Y" }}</small>
+        </div>
+        <h2><a class="article-title" href="{% url 'chain-detail' chain.id %}">${{ chain.price|floatformat:2 }}</a></h2>
+        <p class="article-content">P/E: {{ chain.pe }}</p>
+      </div>
+    </article>
+
+    {% endfor %}
+{% endblock content %}
