@@ -37,6 +37,7 @@ class ChainListView(ListView):
     template_name = 'option_chains/home.html'
     context_object_name = 'chains'
     ordering = ['-date_updated']
+    paginate_by = 2
 
 
 

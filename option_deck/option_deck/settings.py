@@ -25,7 +25,7 @@ SECRET_KEY = 'a5=x&m@$z5si1!iry@_vff3g(0_v1mx^zchb@*^rzihqcw8qpi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['option-deck-env.eba-hn3zxwnp.us-east-1.elasticbeanstalk.com']
 
 
 # Application definition
