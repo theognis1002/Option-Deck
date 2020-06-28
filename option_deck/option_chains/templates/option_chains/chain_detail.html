@@ -6,7 +6,7 @@
     <article class="media content-section">
         <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.ticker }}</a>
+            <a class="mr-2" href="{% url 'chain-detail' chain.id %}">{{ object.ticker }}</a>
             <small class="text-muted">{{ object.date_updated|date:"m-d-Y" }}</small>
             {% if user.is_superuser %}
             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'chain-update' object.id %}">Update</a>
@@ -14,8 +14,8 @@
 
             {% endif %}
         </div>
-        <h2 class="article-title">{{ object.price }}</h2>
-        <p class="article-content">{{ object.pe }}</p>
+        <h2 class="article-title">${{ object.price }}</h2>
+        <p class="article-content">P/E: {{ object.pe }}</p>
         </div>
     </article>
 

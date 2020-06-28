@@ -25,7 +25,7 @@ SECRET_KEY = 'a5=x&m@$z5si1!iry@_vff3g(0_v1mx^zchb@*^rzihqcw8qpi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['option-deck-env.eba-hn3zxwnp.us-east-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['option-deck-env.eba-hn3zxwnp.us-east-1.elasticbeanstalk.com', '127.0.0.1']
 
 
 # Application definition
@@ -125,12 +125,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'option-chains-home'
+LOGIN_REDIRECT_URL = 'home'
 
 LOGIN_URL = 'login'

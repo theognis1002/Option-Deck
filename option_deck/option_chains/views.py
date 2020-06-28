@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView, 
@@ -9,7 +10,7 @@ from django.views.generic import (
     )
 from .models import Chain
 
-
+@login_required
 def home(request):
     context = {
         'chains': Chain.objects.all(),
@@ -18,6 +19,7 @@ def home(request):
     return render(request, 'option_chains/home.html', context)
 
 
+@login_required
 def faq(request):
     context = {
         'title': 'FAQ'
@@ -38,7 +40,6 @@ class ChainListView(ListView):
     context_object_name = 'chains'
     ordering = ['-date_updated']
     paginate_by = 2
-
 
 
 class ChainDetailView(DetailView):
