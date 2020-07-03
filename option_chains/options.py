@@ -1,14 +1,13 @@
 from datetime import datetime, timedelta
 from pprint import pprint
 from statistics import mean
-
-import numpy as np
+from config import tradier_token, quandl_token
 import pandas as pd
 import quandl
 import requests
+from bs4 import BeautifulSoup
 
-tradier_token = "azivVAhRLlCmFnCZ67cuU3kG6A6e"
-quandl_token = "B1ACLyxDxGPUzE1cgHS4"
+
 quandl.ApiConfig.api_key = quandl_token
 
 pd.set_option("display.max_columns", None)
@@ -89,6 +88,10 @@ def short_option_scanner(ticker, option_type):
     return ticker_chain
 
 
+def scraper():
+    r = requests.get('https://www.gurufocus.com/stock/ma/summary')
+    soup = BeautifulSoup(r.text, 'lxml')
+    print(soup.find("div", {"class": "summary-section-lg"}))
+
 if __name__ == "__main__":
-    rates = treasury_rates()
-    pprint(rates)
+    scraper()

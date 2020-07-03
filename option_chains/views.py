@@ -2,7 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.views.generic import (
-    CreateView, DeleteView, DetailView, ListView, UpdateView)
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from .models import Chain
 from .options import treasury_rates
@@ -37,7 +42,7 @@ class ChainListView(ListView):
     template_name = "option_chains/home.html"
     context_object_name = "chains"
     ordering = ["-date_updated"]
-    paginate_by = 2
+    paginate_by = 5
 
 
 class ChainDetailView(DetailView):

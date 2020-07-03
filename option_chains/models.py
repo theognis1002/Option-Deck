@@ -6,17 +6,21 @@ from django.urls import reverse
 
 class Chain(models.Model):
     slug = models.SlugField (
-        verbose_name = "Slug",
-        allow_unicode = True,
+        verbose_name="Slug",
+        allow_unicode=True,
         unique=True,
-        blank = True,
-        null = False
+        blank=True,
+        null=False
     )
     ticker = models.CharField(max_length=4)
     price = models.FloatField()
     company_name = models.CharField(max_length=50)
     description = models.TextField()
     pe = models.FloatField()
+    de = models.FloatField()
+    market_cap = models.FloatField()
+    percent_change = models.FloatField()
+
     date_updated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
