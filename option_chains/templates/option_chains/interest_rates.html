@@ -1,0 +1,62 @@
+{% extends "option_chains/base.html" %}
+
+{% block content %}
+<h3>Search</h3>
+
+<div class="datatable_div">
+  <table class="table table-bordereddatatable">
+    <thead>
+      <tr>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>Symbol</th>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>Description</th>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>Last</th>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>Volume</th>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>Open</th>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>High</th>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>Low</th>
+        <th class="col-md-3" scope="col"><i class="fa fa-fw fa-sort"></i>% Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rate in rates.itertuples %}
+      <tr>
+        <td>{{ rate }}</td>
+        <!-- <td>{{ quote.description }}</td>
+        <td>{{ quote.last }}</td>
+        <td>{{ quote.volume }}</td>
+        <td>{{ quote.open }}</td>
+        <td>{{ quote.high }}</td>
+        <td>{{ quote.low }}</td>
+        <td>{{ quote.change_percentage }}</td> -->
+        <td></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if is_paginated %}
+
+{% if page_obj.has_previous %}
+<a class="btn btn-outline-secondary mb-4" href="?page=1">First</a>
+<a class="btn btn-outline-secondary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+{% endif %}
+
+{% for num in page_obj.paginator.page_range %}
+{% if page_obj.number == num %}
+<a class="btn btn-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+<a class="btn btn-outline-secondary mb-4" href="?page={{ num }}">{{ num }}</a>
+{% endif %}
+{% endfor %}
+
+{% if page_obj.has_next %}
+<a class="btn btn-outline-secondary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+<a class="btn btn-outline-secondary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+{% endif %}
+
+{% endif %}
+{% endblock content %}
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
